@@ -20,15 +20,17 @@ export default {
   name: 'AgentDetail',
   mixins: [getAgentsMixin],
   props: {
-    agentId: { type: [Number, String],
+    agentId: {
+      type: [Number, String],
       validator(value) {
-          return Number.isInteger(Number(value));
-      }, 
+        return Number.isInteger(Number(value));
+      },
     },
   },
   computed: {
     agent() {
       const { agentId } = this;
+      // eslint-disable-next-line no-underscore-dangle
       return this.agents.agents.find(agent => agent._id === +agentId);
     },
   },

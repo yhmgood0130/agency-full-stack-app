@@ -3,7 +3,7 @@
     <div class="top-row">
       <router-link :to="{
           name: 'NewAgent'}">
-        <button @click="selectCustomers()">Add</button>
+        <button>Add</button>
         </router-link>
       <div class="border-box" v-for="(agent,idx) in availableAgents" :key="idx">
         <h2>{{agent.name}}</h2>
@@ -12,21 +12,21 @@
           params: {
             agentId: agent._id
           }}">
-        <button @click="selectAgentDetail()">Detail</button>
+        <button >Detail</button>
         </router-link>
         <router-link :to="{
           name: 'Customers',
           params: {
             agentId: agent._id
           }}">
-        <button @click="selectCustomers()">Customer(s)</button>
+        <button>Customer(s)</button>
         </router-link>
         <router-link :to="{
           name: 'UpdateAgent',
           params: {
             agentId: agent._id
           }}">
-        <button @click="selectAgentUpdate()">Update</button>
+        <button>Update</button>
         </router-link>
       </div>
       <router-view></router-view>
@@ -44,19 +44,11 @@ export default {
   computed: {
     availableAgents() {
       return this.$store.state.agents.agents;
-    }
+    },
   },
   methods: {
-    ...mapActions('agents',['getAgents']),
-    selectAgentDetail() {
-
-    },
-    selectCustomers() {
-
-    },selectAgentUpdate() {
-
-    }
-  }
+    ...mapActions('agents', ['getAgents']),
+  },
 };
 </script>
 

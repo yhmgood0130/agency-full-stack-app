@@ -39,3 +39,7 @@ This web application gives you the option to explore a list of agents and each a
 - If so, should we create an archived page to see a list of inactive customers?
 
 - Should we restrict the access between agents that agents can only see a list of customer that they are directly working with?
+
+- I found that there was duplicated IDs in customer.json in which ID was duplicated ID :9848. [Fixed this issue]
+
+- I noticed that the balance, latitude, and longitude were string, will it be temporary or permanent solution?

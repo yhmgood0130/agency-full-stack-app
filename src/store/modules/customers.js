@@ -29,7 +29,6 @@ export default {
   },
   actions: {
     getCustomerById({ commit }, customerId) {
-      console.log(customerId);
       axios.get(`/api/customers/${customerId}`)
         .then(result => commit('getCustomer', result.data[0]))
         .catch(console.error);
@@ -45,8 +44,6 @@ export default {
         .catch(`${console.error}HELLLOOOOO`);
     },
     updateCustomer({ commit }, updatedCustomer) {
-      console.log(updatedCustomer);
-
       // eslint-disable-next-line no-underscore-dangle
       return axios.put(`/api/customers/${updatedCustomer._id}`, updatedCustomer)
         .then(() => commit('updateCustomer', updatedCustomer));

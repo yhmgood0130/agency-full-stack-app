@@ -1,7 +1,7 @@
 <template>
   <div class="top-row">
     <router-link :to="`/agents/${agentId}/newCustomer`">
-      <button @click="selectcustomerDetail()">Add</button>
+      <button>Add</button>
       </router-link>
     <div class="border-box" v-for="(customer,idx) in availableCustomers" :key="idx">
       <h2>{{customer.firstName + customer.lastName}}</h2>
@@ -10,14 +10,14 @@
         params: {
           customerId: customer._id
         }}">
-      <button @click="selectcustomerDetail()">Detail</button>
+      <button>Detail</button>
       </router-link>
       <router-link :to="{
         name: 'UpdateCustomer',
         params: {
           customerId: customer._id
         }}">
-      <button @click="selectcustomerDetail()">Update</button>
+      <button>Update</button>
       </router-link>
     </div>
     <router-view></router-view>
@@ -33,10 +33,11 @@ export default {
   },
   name: 'Customers',
   props: {
-    agentId: { type: [Number, String],
+    agentId: {
+      type: [Number, String],
       validator(value) {
-          return Number.isInteger(Number(value));
-      }, 
+        return Number.isInteger(Number(value));
+      },
     },
   },
   computed: {
@@ -45,12 +46,10 @@ export default {
     },
     agentIdProp() {
       return this.agentId;
-    }
+    },
   },
   methods: {
-    ...mapActions('customers',['getCustomersByAgentId']),
-    selectcustomerDetail() {
-    }
-  }
+    ...mapActions('customers', ['getCustomersByAgentId']),
+  },
 };
 </script>

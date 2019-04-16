@@ -39,50 +39,50 @@
   </div>
 </template>
 <script>
-import getAgentsMixin from './get-agents-mixin';
 import { mapActions } from 'vuex';
+import getAgentsMixin from './get-agents-mixin';
 
 export default {
   name: 'AgentInputForm',
   mixins: [getAgentsMixin],
   props: {
-    agentId: { type: [String, Number] }
+    agentId: { type: [String, Number] },
   },
   computed: {
     agentInfo() {
       const { agentId } = this;
 
-      if(agentId) {
+      if (agentId) {
+        // eslint-disable-next-line no-underscore-dangle
         return this.agents.agents.find(agent => agent._id === +agentId);
-      } else {
-        return {
-          name:"",
-          address:"",
-          city:"",
-          state:"",
-          zipCode:"",
-          tier:"",
-          primary:"",
-          mobile: ""
-        }
       }
-    }
+      return {
+        name: '',
+        address: '',
+        city: '',
+        state: '',
+        zipCode: '',
+        tier: '',
+        primary: '',
+        mobile: '',
+      };
+    },
   },
   methods: {
-    ...mapActions('agents',['addAgent','updateAgent']),
-    submit: function() {
-      const { agentId } = this;      
+    ...mapActions('agents', ['addAgent', 'updateAgent']),
+    submit() {
+      const { agentId } = this;
       const formData = this.agentInfo;
       if (agentId) {
         this.updateAgent(formData);
-        this.$router.push("/agents");
+        this.$router.push('/agents');
       } else {
         this.addAgent(formData);
-        this.$router.push("/agents");
+        this.$router.push('/agents');
       }
-    }
-  }
-}
+    },
+  },
+};
 </script>
 <style>
 </style>

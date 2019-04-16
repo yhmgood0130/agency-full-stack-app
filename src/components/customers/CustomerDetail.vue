@@ -26,10 +26,11 @@ export default {
   },
   name: 'customerDetail',
   props: {
-    customerId: { type: [Number, String],
+    customerId: {
+      type: [Number, String],
       validator(value) {
-          return Number.isInteger(Number(value));
-      }, 
+        return Number.isInteger(Number(value));
+      },
     },
   },
   computed: {
@@ -38,12 +39,12 @@ export default {
     },
   },
   methods: {
-    ...mapActions('customers',['getCustomerById','deleteCustomer']),
+    ...mapActions('customers', ['getCustomerById', 'deleteCustomer']),
     selectDeleteCustomer() {
       const { customerId } = this;
       this.deleteCustomer(customerId);
-      this.$router.push("/agents");
-    }
-  }
+      this.$router.push('/agents');
+    },
+  },
 };
 </script>

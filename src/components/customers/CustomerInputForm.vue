@@ -74,12 +74,12 @@ export default {
   name: 'CustomerInputForm',
   data() {
     return {
-      picked: true
-      }
+      picked: true,
+    };
   },
   props: {
     customerId: { type: [String, Number] },
-    agentId: { type: [String, Number]}
+    agentId: { type: [String, Number] },
   },
   computed: {
     customers() {
@@ -88,52 +88,54 @@ export default {
     customerInfo() {
       const { customerId } = this;
 
-      if(customerId) {
+      if (customerId) {
+        // eslint-disable-next-line no-underscore-dangle
         return this.customers.customers.find(customer => customer._id === +customerId);
-      } else {
-        return {
-          firstName:"",
-          lastName:"",
-          agent_id: this.$route.params.agentId,
-          age:null,
-          isActive: false,
-          balance:"",
-          eyeColor:"",
-          company:"",
-          email: "",
-          phone:"",
-          address:"",
-          registered:"",
-          latitude:"",
-          longitude:"",
-          tags:[]
-        }
       }
-    }
+      return {
+        firstName: '',
+        lastName: '',
+        agent_id: this.$route.params.agentId,
+        age: null,
+        isActive: false,
+        balance: '',
+        eyeColor: '',
+        company: '',
+        email: '',
+        phone: '',
+        address: '',
+        registered: '',
+        latitude: '',
+        longitude: '',
+        tags: [],
+      };
+    },
   },
   methods: {
-    ...mapActions('customers',['addCustomer','updateCustomer']),
-    check() {      
+    ...mapActions('customers', ['addCustomer', 'updateCustomer']),
+    check() {
       return true;
     },
-    submit: function() {
-      const { customerId, agentId, $data } = this;      
+    submit() {
+      const { customerId, $data } = this;
       const formData = this.customerInfo;
+
       formData.age = +formData.age;
       formData.isActive = $data.picked;
-      if (typeof formData.tags == 'string') {
+
+      if (typeof formData.tags === 'string') {
         formData.tags = formData.tags.split(',');
-      };
+      }
       if (customerId) {
         this.updateCustomer(formData);
-        this.$router.push("/agents");
+        this.$router.push('/agents');
       } else {
         this.addCustomer(formData);
-        this.$router.push("/agents");
+        this.$router.push('/agents');
       }
-    }
-  }
-}
+    },
+  },
+};
 </script>
 <style>
 form {

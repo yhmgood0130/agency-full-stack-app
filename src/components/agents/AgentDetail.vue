@@ -1,0 +1,34 @@
+<template>
+  <div>
+    <div>Name: {{agent.name}}</div>
+    <div>Address: {{agent.address}}</div>
+    <div>City: {{agent.city}}</div>
+    <div>State: {{agent.state}}</div>
+    <div>Zip Code: {{agent.zipCode}}</div>
+    <div>Tier: {{agent.tier}}</div>
+    <div>Phone</div>
+    <div>Primary: {{agent.phone.primary}}</div>
+    <div>Mobile: {{agent.phone.mobile}}</div>
+  </div>
+</template>
+<script>
+import getAgentsMixin from './get-agents-mixin';
+
+export default {
+  name: 'AgentDetail',
+  mixins: [getAgentsMixin],
+  props: {
+    agentId: { type: [Number, String],
+      validator(value) {
+          return Number.isInteger(Number(value));
+      }, 
+    },
+  },
+  computed: {
+    agent() {
+      const { agentId } = this;
+      return this.agents.agents.find(age => age._id === +agentId);
+    },
+  },
+};
+</script>

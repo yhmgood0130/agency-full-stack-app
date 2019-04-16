@@ -1,31 +1,76 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+    <header>
+      <nav>
+        <ul>
+          <li class="nav-item">
+            <router-link class="nav-link" :to="{name: 'Home'}" exact>
+              <h2>HOMMME</h2>
+            </router-link>
+          </li>
+          <li class="nav-item">
+            <router-link class="nav-link" :to="{name: 'Agents'}" exact>
+              <h2>Agents</h2>
+            </router-link>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <div class="container">
     </div>
     <router-view/>
   </div>
 </template>
 
+<script>
+export default {
+  name: 'app',
+};
+</script>
+
 <style>
+body {
+  background:linear-gradient(to bottom, #555, #999);
+  background-attachment: fixed;
+}
+</style>
+
+
+<style scoped>
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
 }
-#nav {
+main {
   padding: 30px;
+  background-color: white;
+  width: 964px;
+  min-height: 300px;
 }
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
+header {
+  background-color: #999;
+  width: 1184px;
+  margin: 0 auto;
 }
-
-#nav a.router-link-exact-active {
-  color: #42b983;
+ul {
+  padding: 3px;
+  display: flex;
+}
+.nav-item {
+  display: inline-block;
+  padding: 5px 10px;
+  font-size: 22px;
+  border-right: 1px solid #bbb;
+}
+.nav-link {
+  text-decoration: none;
+  color: inherit;
+}
+.router-link-active {
+  color: blue;
+}
+.container {
+  display: flex;
+  margin: 10px auto 0 auto;
+  justify-content: center;
 }
 </style>

@@ -1,14 +1,16 @@
 <template>
-  <div>
-    <div>Name: {{agent.name}}</div>
-    <div>Address: {{agent.address}}</div>
-    <div>City: {{agent.city}}</div>
-    <div>State: {{agent.state}}</div>
-    <div>Zip Code: {{agent.zipCode}}</div>
-    <div>Tier: {{agent.tier}}</div>
-    <div>Phone</div>
-    <div>Primary: {{agent.phone.primary}}</div>
-    <div>Mobile: {{agent.phone.mobile}}</div>
+  <div class="content">
+    <div class="top-row">
+      <div>Name: {{agent.name}}</div>
+      <div>Address: {{agent.address}}</div>
+      <div>City: {{agent.city}}</div>
+      <div>State: {{agent.state}}</div>
+      <div>Zip Code: {{agent.zipCode}}</div>
+      <div>Tier: {{agent.tier}}</div>
+      <div>Phone</div>
+      <div>Primary: {{agent.primary}}</div>
+      <div>Mobile: {{agent.mobile}}</div>
+    </div>
   </div>
 </template>
 <script>
@@ -27,7 +29,7 @@ export default {
   computed: {
     agent() {
       const { agentId } = this;
-      return this.agents.agents.find(age => age._id === +agentId);
+      return this.agents.agents.find(agent => agent._id === +agentId);
     },
   },
 };

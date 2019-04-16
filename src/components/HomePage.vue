@@ -1,6 +1,5 @@
 <template>
   <div class="home">
-    <div>Helloo</div>
     <div class="get-started">
       <router-link to="/agents">Get started</router-link> Find your agent today!
     </div>

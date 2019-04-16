@@ -1,13 +1,23 @@
 <template>
-  <div>
-    <div v-for="(customer,idx) in availableCustomers" :key="idx">
-      <h2>{{customer.name.first + customer.name.last}}</h2>
+  <div class="top-row">
+    <router-link :to="`/agents/${agentId}/newCustomer`">
+      <button @click="selectcustomerDetail()">Add</button>
+      </router-link>
+    <div class="border-box" v-for="(customer,idx) in availableCustomers" :key="idx">
+      <h2>{{customer.firstName + customer.lastName}}</h2>
       <router-link :to="{
         name: 'CustomerDetail',
         params: {
           customerId: customer._id
         }}">
       <button @click="selectcustomerDetail()">Detail</button>
+      </router-link>
+      <router-link :to="{
+        name: 'UpdateCustomer',
+        params: {
+          customerId: customer._id
+        }}">
+      <button @click="selectcustomerDetail()">Update</button>
       </router-link>
     </div>
     <router-view></router-view>
@@ -16,9 +26,10 @@
 <script>
 import { mapActions } from 'vuex';
 
+
 export default {
   created() {
-    this.getCustomers(this.agentId);
+    this.getCustomersByAgentId(this.agentId);
   },
   name: 'Customers',
   props: {
@@ -30,14 +41,15 @@ export default {
   },
   computed: {
     availableCustomers() {
-      const { agentId } = this;
       return this.$store.state.customers.customers;
+    },
+    agentIdProp() {
+      return this.agentId;
     }
   },
   methods: {
-    ...mapActions('customers',['getCustomers']),
-    selectCustomerDetail() {
-
+    ...mapActions('customers',['getCustomersByAgentId']),
+    selectcustomerDetail() {
     }
   }
 };

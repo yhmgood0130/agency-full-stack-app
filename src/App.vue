@@ -5,7 +5,7 @@
         <ul>
           <li class="nav-item">
             <router-link class="nav-link" :to="{name: 'Home'}" exact>
-              <h2>HOMMME</h2>
+              <h2>Home</h2>
             </router-link>
           </li>
           <li class="nav-item">

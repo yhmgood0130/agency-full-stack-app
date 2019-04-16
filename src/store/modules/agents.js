@@ -9,7 +9,7 @@ export default {
     getAgents(state, agents) {
       state.agents = agents;
     },
-    addNewAgent(state, newAgent) {
+    addAgent(state, newAgent) {
       state.agents.push(newAgent);
     },
   },
@@ -19,9 +19,14 @@ export default {
         .then(result => commit('getAgents', result.data))
         .catch(console.error);
     },
-    addNewAgent({ commit }, newAgent) {
-      return axios.post('/api/agent', newAgent)
-        .then(() => commit('addNewAgent', newAgent));
+    addAgent({ commit }, newAgent) {
+      return axios.post('/api/agents', newAgent)
+        .then(() => commit('addAgent', newAgent));
+    },
+    updateAgent({ commit }, updatedAgent) {
+      // eslint-disable-next-line no-underscore-dangle
+      return axios.put(`/api/agents/${updatedAgent._id}`, updatedAgent)
+        .then(() => commit('updateAgent', updatedAgent));
     },
   },
   getters: {

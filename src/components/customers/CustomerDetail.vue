@@ -1,10 +1,11 @@
 <template>
-  <div>
-    <div>First Name: {{customer.name.first}}</div>
-    <div>Last Name: {{customer.name.last}}</div>
+  <div class="top-row">
+    <button @click="selectDeleteCustomer()">Delete</button>
+    <div>First Name: {{customer.firstName}}</div>
+    <div>Last Name: {{customer.lastName}}</div>
     <div>Age: {{customer.age}}</div>
     <div>Active: {{customer.isActive}}</div>
-    <div>Balance: {{customer.isAgentValid}}</div>
+    <div>Balance: {{customer.balance}}</div>
     <div>eyeColor: {{customer.eyeColor}}</div>
     <div>Company: {{customer.company}}</div>
     <div>Email: {{customer.email}}</div>
@@ -13,15 +14,17 @@
     <div>Registered Date: {{customer.registered}}</div>
     <div>Latitude: {{customer.latitude}}</div>
     <div>Longitude: {{customer.longitude}}</div>
-    <div>Tag(s): {{customer.tags.ToString()}}</div>
+    <div>Tag(s): {{customer.tags}}</div>
   </div>
 </template>
 <script>
-import getCustomersMixin from './get-customers-mixin';
+import { mapActions } from 'vuex';
 
 export default {
+  created() {
+    this.getCustomerById(this.customerId);
+  },
   name: 'customerDetail',
-  mixins: [getCustomersMixin],
   props: {
     customerId: { type: [Number, String],
       validator(value) {
@@ -31,9 +34,16 @@ export default {
   },
   computed: {
     customer() {
-      const { customerId } = this;
-      return this.customers.customers.find(age => age._id === +customerId);
+      return this.$store.state.customers.customer;
     },
   },
+  methods: {
+    ...mapActions('customers',['getCustomerById','deleteCustomer']),
+    selectDeleteCustomer() {
+      const { customerId } = this;
+      this.deleteCustomer(customerId);
+      this.$router.push("/agents");
+    }
+  }
 };
 </script>

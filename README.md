@@ -28,6 +28,10 @@ npm run lint
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
+### Operating System
+
+Windows 10
+
 ### Introduction
 
 This web application gives you the option to explore a list of agents and each agents has a list of their own customers. The user can view, add, and edit the agent, which is self-explanatory, and for customers, the user can view, add, edit and also delete the customer. Delete option for customer is inside the customer detail page.
